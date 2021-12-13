@@ -10,8 +10,12 @@ contract UToken is ERC20 {
         _mint(msg.sender, initialSupply);
     }
 
-    function mintNewTokens(uint256 amount) external {
-        require(owner == msg.sender, "You need to be Admin.");
+    modifier onlyOwner {
+        require(msg.sender == owner, "You need to be the Owner.");
+        _;
+    }
+
+    function mintNewTokens(uint256 amount) external onlyOwner {
         _mint(msg.sender, amount);
     }
 }

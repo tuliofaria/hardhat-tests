@@ -23,6 +23,9 @@ describe("Token", function () {
     const UToken = await ethers.getContractFactory("UToken", owner);
     const token = await UToken.deploy(10000);
     await token.deployed();
-    const mintingTx = await token.connect(addr1).mintNewTokens(20);
+
+    await expect(token.connect(addr1).mintNewTokens(20)).to.be.revertedWith(
+      "You need to be the Owner."
+    );
   });
 });
