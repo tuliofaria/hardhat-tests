@@ -24,7 +24,7 @@ const Index = () => {
         console.log({ signerAddress, uToken })
         const balance = await uToken.balanceOf(signerAddress)
         console.log({ balance: BigNumber.from(balance).toString() })
-        await uToken.transfer('0x90f79bf6eb2c4f870365e785982e1f101e93b906', 10)
+        // await uToken.transfer('0x90f79bf6eb2c4f870365e785982e1f101e93b906', 10)
         return { signerAddress, uToken }
       } catch (err) {
         console.log({ err })
@@ -42,13 +42,17 @@ const Index = () => {
   }, [])
   return (
     <>
-      <h1>EthersJS</h1>
-      <pre>
-        {JSON.stringify({
-          initialized,
-          connected,
-          userAddress
-        })}
+      <h1 className='m-8 text-2xl font-bold'>EthersJS</h1>
+      <pre className='m-4 p-2 shadow-lg rounded-md bg-gray-50'>
+        {JSON.stringify(
+          {
+            initialized,
+            connected,
+            userAddress
+          },
+          null,
+          2
+        )}
       </pre>
     </>
   )
